@@ -46,7 +46,9 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order></Order>
+        {/* !!Passing the whole state!! We don't want to use this since we want to make sure what was passed in */}
+        {/* <Order {...this.state}></Order> */}
+        <Order fishes={this.state.fishes} order={this.state.order}></Order>
         <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes}></Inventory>
       </div>
     );
@@ -56,3 +58,6 @@ class App extends React.Component {
 export default App;
 
 // index={key} allows access to key
+// object lookup
+// this.state .fishes.fish1 ; this.state.fishes.fish2 ....
+// turn to this.state.fishes[key]
