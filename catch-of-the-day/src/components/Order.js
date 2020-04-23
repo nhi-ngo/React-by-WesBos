@@ -42,7 +42,7 @@ class Order extends React.Component {
           Total: <strong> {formatPrice(total)} </strong>
         </div>
       </div>
-    );
+    );  
   }
 }
 
