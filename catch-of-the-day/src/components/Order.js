@@ -18,7 +18,7 @@ class Order extends React.Component {
       );
     }
     return (
-      <li>
+      <li key={key}>
         {count} lbs {fish.name}
         {formatPrice(count * fish.price)}
       </li>

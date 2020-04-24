@@ -22,7 +22,7 @@ class App extends React.Component {
     if (localStorageRef) {
       this.setState({ order: JSON.parse(localStorageRef) });
     }
-    
+
     this.ref = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: 'fishes',
@@ -45,6 +45,15 @@ class App extends React.Component {
     fishes[`fish${Date.now()}`] = fish;
     // 3. Set the new fishes object to state
     // this.setState({ fishes: fishes});
+    this.setState({ fishes });
+  };
+
+  updateFish = (key, updatedFish) => {
+    // 1. Take a copy of the current state
+    const { fishes } = { ...this.state };
+    // 2. Update that state
+    fishes[key] = updatedFish;
+    // 3. Set the state
     this.setState({ fishes });
   };
 
@@ -76,7 +85,12 @@ class App extends React.Component {
         {/* !!Passing the whole state!! We don't want to use this since we want to make sure what was passed in */}
         {/* <Order {...this.state}></Order> */}
         <Order fishes={this.state.fishes} order={this.state.order}></Order>
-        <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes}></Inventory>
+        <Inventory
+          addFish={this.addFish}
+          loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
+          updateFish={this.updateFish}
+        ></Inventory>
       </div>
     );
   }
