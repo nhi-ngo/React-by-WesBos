@@ -57,17 +57,36 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+  deleteFish = key => {
+    // 1. Take a copy of the state
+    const { fishes } = { ...this.state };
+    // 2. Update the state (Since we are mirroring fishes state to Firebase, Firebase will update when the removed item is set to null)
+    fishes[key] = null;
+    // 3. Set the state
+    this.setState({ fishes });
+  };
+
   loadSampleFishes = () => {
     this.setState({ fishes: sampleFishes });
   };
 
   addToOrder = key => {
     // 1. Take a copy of the state
-    const { order } = this.state;
+    const { order } = { ...this.state };
     // 2. Either add to the order, or update the number in our order
     // if the order already exists, increment it by 1 otherwise return 1 for new order
     order[key] = order[key] + 1 || 1;
     // 3. Call setState to update our state object
+    this.setState({ order });
+  };
+
+  removeFromOrder = key => {
+    // 1. Take a copy of the state
+    const { order } = { ...this.state };
+    // 2. Remove that item from order
+    // We are not mirroring to firebase so we can use delete
+    delete order[key];
+    // 3. Set the state
     this.setState({ order });
   };
 
@@ -84,12 +103,13 @@ class App extends React.Component {
         </div>
         {/* !!Passing the whole state!! We don't want to use this since we want to make sure what was passed in */}
         {/* <Order {...this.state}></Order> */}
-        <Order fishes={this.state.fishes} order={this.state.order}></Order>
+        <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}></Order>
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
         ></Inventory>
       </div>
     );

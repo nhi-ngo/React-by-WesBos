@@ -2,12 +2,13 @@ import React from 'react';
 
 class EditFishForm extends React.Component {
   handleChange = e => {
-    console.log(e.currentTarget.value);
+    console.log(e.currentTarget.name);
     // update that fish
     // 1. Take a copy of the current fish
     const updatedFish = {
       ...this.props.fish,
       [e.currentTarget.name]: e.currentTarget.value,
+      // name: e.currentTarget.value // use object square brackets looking for what were changed
     };
     this.props.updateFish(this.props.index, updatedFish);
   };
@@ -23,9 +24,13 @@ class EditFishForm extends React.Component {
         </select>
         <textarea name="desc" onChange={this.handleChange} value={this.props.fish.desc} />
         <input type="text" name="image" onChange={this.handleChange} value={this.props.fish.image} />
+        <button onClick={() => this.props.deleteFish(this.props.index)}>Remove Fish</button>
       </div>
     );
   }
 }
 
 export default EditFishForm;
+
+// value={this.props.fish.name}
+// state lives in the input where users can update the value of the input
