@@ -1,14 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import firebase from 'firebase';
-import AddFishForm from './AddFishForm';
-import EditFishForm from './EditFishForm';
-import Login from './Login';
-<<<<<<< HEAD
-import base, { firebaseApp } from '../base';
-=======
-import { firebaseApp } from '../base';
->>>>>>> 9b4f6a767702d1ea2a7692fd651d6e5e9cdc3595
+import React from "react";
+import PropTypes from "prop-types";
+import firebase from "firebase";
+import AddFishForm from "./AddFishForm";
+import EditFishForm from "./EditFishForm";
+import Login from "./Login";
+import base, { firebaseApp } from "../base";
 
 class Inventory extends React.Component {
   static propTypes = {
@@ -16,12 +12,12 @@ class Inventory extends React.Component {
     updateFish: PropTypes.func,
     deleteFish: PropTypes.func,
     loadSampleFishes: PropTypes.func,
-    addFish: PropTypes.func,
+    addFish: PropTypes.func
   };
 
   state = {
     uid: null,
-    owner: null,
+    owner: null
   };
 
   componentDidMount() {
@@ -40,13 +36,13 @@ class Inventory extends React.Component {
     if (!store.owner) {
       // save it as our own
       await base.post(`${this.props.storeId}/owner`, {
-        data: authData.user.uid,
+        data: authData.user.uid
       });
     }
     // 3. Set the state of the inventory component to reflect the current user
     this.setState({
       uid: authData.user.uid,
-      owner: store.owner || authData.user.uid,
+      owner: store.owner || authData.user.uid
     });
   };
 
@@ -59,25 +55,12 @@ class Inventory extends React.Component {
   };
 
   logout = async () => {
-    console.log('Logging out!');
+    console.log("Logging out!");
     await firebase.auth().signOut();
     this.setState({ uid: null });
   };
 
-  authHandler = async authData => {
-    console.log(authData);
-  };
-
-  authenticate = provider => {
-    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-    firebaseApp
-      .auth()
-      .signInWithPopup(authProvider)
-      .then(this.authHandler);
-  };
-
   render() {
-<<<<<<< HEAD
     const logout = <button onClick={this.logout}>Log Out!</button>;
 
     // 1. Check if they are logged in
@@ -96,9 +79,6 @@ class Inventory extends React.Component {
     }
 
     // 3. They must be the owner, just render the inventory
-=======
-    return <Login authenticate={this.authenticate} />;
->>>>>>> 9b4f6a767702d1ea2a7692fd651d6e5e9cdc3595
     return (
       <div className="inventory">
         <h2>Inventory</h2>
@@ -113,7 +93,9 @@ class Inventory extends React.Component {
           />
         ))}
         <AddFishForm addFish={this.props.addFish} />
-        <button onClick={this.props.loadSampleFishes}>Load Sample Fishes</button>
+        <button onClick={this.props.loadSampleFishes}>
+          Load Sample Fishes
+        </button>
       </div>
     );
   }
