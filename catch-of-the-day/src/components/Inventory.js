@@ -4,7 +4,11 @@ import firebase from 'firebase';
 import AddFishForm from './AddFishForm';
 import EditFishForm from './EditFishForm';
 import Login from './Login';
+<<<<<<< HEAD
 import base, { firebaseApp } from '../base';
+=======
+import { firebaseApp } from '../base';
+>>>>>>> 9b4f6a767702d1ea2a7692fd651d6e5e9cdc3595
 
 class Inventory extends React.Component {
   static propTypes = {
@@ -60,7 +64,20 @@ class Inventory extends React.Component {
     this.setState({ uid: null });
   };
 
+  authHandler = async authData => {
+    console.log(authData);
+  };
+
+  authenticate = provider => {
+    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+    firebaseApp
+      .auth()
+      .signInWithPopup(authProvider)
+      .then(this.authHandler);
+  };
+
   render() {
+<<<<<<< HEAD
     const logout = <button onClick={this.logout}>Log Out!</button>;
 
     // 1. Check if they are logged in
@@ -79,6 +96,9 @@ class Inventory extends React.Component {
     }
 
     // 3. They must be the owner, just render the inventory
+=======
+    return <Login authenticate={this.authenticate} />;
+>>>>>>> 9b4f6a767702d1ea2a7692fd651d6e5e9cdc3595
     return (
       <div className="inventory">
         <h2>Inventory</h2>
