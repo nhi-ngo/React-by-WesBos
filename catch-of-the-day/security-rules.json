@@ -6,8 +6,12 @@
     ".read": true,
     "$room": {
       // only the store owner can edit the data
+<<<<<<< HEAD
       ".write":
         "auth != null && (!data.exists() || data.child('owner').val() === auth.uid)",
+=======
+      ".write": "auth != null && (!data.exists() || data.child('owner').val() === auth.uid)",
+>>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
       ".read": true
     }
   }

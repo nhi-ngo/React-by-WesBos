@@ -4,7 +4,10 @@
   exit
   appear Must set transitionAppear={true} on animation component
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
 .order-enter
   transform: translateX(-120%)
   transition 0.5s
@@ -22,6 +25,7 @@
     transform: translateX(120%)
     padding: 0
 
+<<<<<<< HEAD
 
 .count-enter
   background: red
@@ -33,11 +37,24 @@
 
 .count-exit
   background: black
+=======
+.count-enter
+  transition .5s
+  transform translateY(100%)
+  &.count-enter-active
+    transform translateY(0)
+
+.count-exit
+>>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
   transform translateY(0)
   transition .5s
   position absolute
   left 0
   bottom 0
   &.count-exit-active
+<<<<<<< HEAD
     background green
     transform translateY(-100%) scale(3)
+=======
+    transform translateY(-100%) scale(1)
+>>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
