@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
-import PropTypes from 'prop-types';
->>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
 
 const Header = props => (
   <header className="top">
@@ -15,20 +11,9 @@ const Header = props => (
       Day
     </h1>
     <h3 className="tagline">
-<<<<<<< HEAD
       <span>{props.tagline}</span>
-=======
-      <span>{props.tagline}></span>
->>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
     </h3>
   </header>
 );
 
-<<<<<<< HEAD
-=======
-Header.propTypes = {
-  tagline: PropTypes.string.isRequired,
-};
-
->>>>>>> 8f49e58aab8cfc747fb863ad8d6b566b80714de0
 export default Header;
