@@ -368,6 +368,7 @@ input#fold:not(:checked) ~ #main .catch-of-the-day > * {
 	transform: none;
 }
 label[for='fold'] {
+  display: none;
 	position: absolute;
 	top: 1rem;
 	left: 1rem;
